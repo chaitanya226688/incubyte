@@ -35,3 +35,7 @@ test("delimiters can be of any length", () => {
 test("multiple delimiters", () => {
     expect(Add("//[*][%]\n1*2%3")).toBe(6);
 });
+
+test("multiple delimiters of any length", () => {
+    expect(Add("//[***][%%%]\n1***2%%%3")).toBe(6);
+});
