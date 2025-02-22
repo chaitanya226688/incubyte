@@ -10,6 +10,11 @@ const Add = (numbers) => {
     }
 
     let nums = numbers.split(splitQuote).map(Number)
+
+    const negaiveNumbers = nums.filter(element => element < 0)
+    console.log("negaiveNumbersn", negaiveNumbers)
+    if (negaiveNumbers.length > 0) throw new Error('Negatives not allowed: ' + negaiveNumbers.join(", "))
+
     return nums.reduce((sum, num) => sum + num, 0);
 }
 

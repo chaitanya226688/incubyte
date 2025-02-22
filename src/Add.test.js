@@ -19,3 +19,7 @@ test("add numbers seperated by comma and new line", () => {
 test("support new delimiter addition", () => {
     expect(Add("//;\n1;2")).toBe(3);
 });
+
+test("negative numbers will give error", () => {
+    expect(() => Add("1,-2,-3,4")).toThrow("Negatives not allowed: -2, -3");
+});
