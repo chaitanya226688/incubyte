@@ -1,16 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
+import Add from './Add';
 
 function App() {
-  const [sumData, setSumData] = useState(0)
+  const [sumData, setSumData] = useState(-1)
+  const [errorData, setErrorData] = useState(null)
   const [textData, setTextData] = useState('')
 
   const setAddData = () => {
-    setSumData(0)
+    try {
+      const addString = Add(textData)
+      setSumData(addString)
+    } catch (e) {
+      setErrorData(e.message)
+    }
   }
 
   const onChangeText = (e) => {
+    setSumData(-1)
+    setErrorData(null)
     setTextData(e.target.value)
   }
 
@@ -18,8 +27,20 @@ function App() {
     <div className="App">
       <div style={{ padding: 20, display: 'flex', alignItems: 'center', flexDirection: 'column' }} >
         <h3>Incubyte TDD Assesment: Add</h3>
-        <input type='text' value={textData} onChange={onChangeText} placeholder='Enter the string for addition' style={{ padding: 10 }} />
+        <textarea
+          type="text"
+          placeholder="Enter the string for addition"
+          rows={4}
+          value={textData}
+          onChange={onChangeText}
+          style={{ padding: 10 }}
+        >
+          {textData}
+        </textarea>
         <button onClick={setAddData} style={{ display: 'block', padding: 10, marginTop: 20 }} >Calculate</button>
+
+        {sumData >= 0 && <h2>{sumData}</h2>}
+        {errorData != null && <h2 style={{ color: 'red' }} >{errorData}</h2>}
       </div>
     </div>
   );
