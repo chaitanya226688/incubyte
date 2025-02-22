@@ -7,8 +7,10 @@ const Add = (numbers) => {
         const splitQuotesMatches = numbers.match(/^\/\/(\[.*?\])+\n/)
         const items = numbers.split("\n");
         if (splitQuotesMatches) {
-            splitQuote = splitQuotesMatches[1].replace("[", "").replace(']', "")
-            console.log(splitQuote)
+            let splitQuotes = splitQuotesMatches[0].match(/\[(.*?)\]/g)
+            splitQuotes = splitQuotes.map(element => element.replace("[", "").replace(']', ""))
+            splitQuotes = splitQuotes.map(element => element.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&'))
+            splitQuote = new RegExp(splitQuotes.join("|"))
         } else {
             splitQuote = new RegExp(items[0][2])
         }
