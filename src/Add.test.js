@@ -7,3 +7,7 @@ test("return 0 for empty string", () => {
 test("returns the number itself if only one number is provided", () => {
     expect(Add("1")).toBe(1);
 });
+
+test("add two numbers seperated by comma", () => {
+    expect(Add("1,2")).toBe(3);
+});
