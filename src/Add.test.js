@@ -1,3 +1,5 @@
+import Add from "./Add";
+
 test("return 0 for empty string", () => {
-    expect(add("").toBe(0));
+    expect(Add("")).toBe(0);
 });
