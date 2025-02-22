@@ -15,3 +15,7 @@ test("add two numbers seperated by comma", () => {
 test("add numbers seperated by comma and new line", () => {
     expect(Add("1,2\n3")).toBe(6);
 });
+
+test("support new delimiter addition", () => {
+    expect(Add("//;\n1;2")).toBe(3);
+});
